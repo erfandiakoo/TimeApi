@@ -11,7 +11,7 @@ func SetupRoutes(app *fiber.App) {
 		return c.JSON("Worked")
 	})
 
-	time := api.Group("api/v1")
+	time := api.Group("api")
 	time.Get("/now", handler.GetTime)
 	time.Get("/unix", handler.GetTimeUnix)
 	time.Get("/utc", handler.GetTimeUtc)

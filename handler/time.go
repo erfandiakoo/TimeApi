@@ -40,15 +40,33 @@ func GetTimeUtc(c *fiber.Ctx) error {
 
 func GetTimeIP(c *fiber.Ctx) error {
 	timezone := GetIPZone(string(c.IP()))
-	fmt.Println(timezone)
+
 	loc, _ := time.LoadLocation(timezone)
 	dt := time.Now().In(loc)
+
 	return c.JSON(&models.ResponseModel{
 		Data:    map[string]interface{}{"result": dt},
 		Message: "Ok",
 		Code:    200,
 	})
 }
+
+func GetTimeTimeZone(c *fiber.Ctx) error {
+	timezone := c.Params("area")
+
+	fmt.Println(timezone)
+
+	//loc, _ := time.LoadLocation(timezone)
+	dt := time.Now()
+
+	return c.JSON(&models.ResponseModel{
+		Data:    map[string]interface{}{"result": dt},
+		Message: "Ok",
+		Code:    200,
+	})
+
+}
+
 func GetIPZone(ip string) string {
 	resp, err := http.Get("http://ip-api.com/json/" + ip + "?fields=256")
 	if err != nil {

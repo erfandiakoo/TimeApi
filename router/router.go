@@ -16,5 +16,6 @@ func SetupRoutes(app *fiber.App) {
 	time.Get("/unix", handler.GetTimeUnix)
 	time.Get("/utc", handler.GetTimeUtc)
 	time.Get("/ip", handler.GetTimeIP)
+	time.Get("timezone/:area", handler.GetTimeTimeZone)
 
 }
